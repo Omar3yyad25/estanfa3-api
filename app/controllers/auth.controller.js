@@ -31,12 +31,12 @@ exports.signup = async (req, res) => {
       });
 
       const result = user.setRoles(roles);
-      if (result) res.send({ message: "User registered successfully!" });
+      if (result) res.redirect("https://estanfa3.com/index-temp.html");
         
     } else {
       // user has role = 1
       const result = user.setRoles([1]);
-      if (result) res.send({ message: "User registered successfully!" });
+      if (result) res.redirect("https://estanfa3.com/index-temp.html");
     }
   } catch (error) {
     res.status(500).send({ message: error.message });
@@ -73,7 +73,7 @@ exports.signin = async (req, res) => {
   
 
     req.session.token = token;
-    //return res.redirect("https://estanfa3.com/index-temp.html");
+    return res.redirect("https://estanfa3.com/index-temp.html");
     return res.status(200).send({
       id: user.id,
       username: user.username,

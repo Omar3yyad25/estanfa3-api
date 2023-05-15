@@ -1,27 +1,28 @@
-//products.model.js
-
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
-
+const { DataTypes } = require("sequelize");
 module.exports = (sequelize, Sequelize) => {
-    const Product =  sequelize.define("products",{
-        name: {
-            type: sequelize.STRING,
+    const Product =  sequelize.define("Product",{
+          sellerId:{
+            type: DataTypes.INTEGER,
+            allowNull: false
+          },
+          name: {
+            type: DataTypes.STRING,
             allowNull: false
           },
           price: {
-            type: sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
           },
           description: {
-            type: sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
           },
           image: {
-            type: sequelize.STRING,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
           }
+
     });
 
-    return Product
+    return Product;
 };

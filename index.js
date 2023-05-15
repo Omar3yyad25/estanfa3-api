@@ -6,7 +6,13 @@ const swaggerUi = require('swagger-ui-express');
 const multer  = require('multer');
 const path = require('path');
 
+const cookieParser = require("cookie-parser");
+
+
 const app = express();
+
+
+app.use(cookieParser());
 
 const options = {
   definition: {
@@ -92,6 +98,7 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/products.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;

@@ -1,18 +1,20 @@
 // In controllers/productController.js
 const db = require('../models');
+const decode = require('../utils/jwtdecode')
 
 // Create a new product
 exports.create = async (req, res) => {
   const { name, price, description } = req.body;
-  const sellerId = req.cookies.sellerId; // get sellerId from cookies
-  
+  const session = req.cookies['bezkoder-session']  // get sellerId from cookies
+  const sellerId = decode.jwtdecode(session);
+
   try {
     const product = await db.Product.create({
+      sellerId: sellerId,
       name,
       price,
       description,
-      image: req.file.filename, // Assumes that the uploaded image file is stored in the "public/images" directory
-      sellerId
+      image: req?.file?.filename, // Assumes that the uploaded image file is stored in the "public/images" directory
     });
 
     res.status(201).json(product);
@@ -25,8 +27,8 @@ exports.create = async (req, res) => {
 // Retrieve all products
 exports.getAll = async (req, res) => {
   try {
-    const products = await db.Product.findAll();
-    res.json(products);
+    const xyz = await db
+    const products = await db.Product.findAll().then((products) => {res.json(products)});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
@@ -39,6 +41,7 @@ exports.getById = async (req, res) => {
 
   try {
     const product = await db.Product.findByPk(id);
+
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
@@ -59,7 +62,7 @@ exports.updateById = async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
-    product.name = name;
+    //product.name = name;
     product.price = price;
     product.description = description;
     if (req.file) {
