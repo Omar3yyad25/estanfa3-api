@@ -1,15 +1,15 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize, Sequelize) => {
-    const Product =  sequelize.define("Product",{
+    const offer =  sequelize.define("offer",{
           sellerId:{
             type: DataTypes.INTEGER,
             allowNull: false
           },
-          name: {
-            type: DataTypes.STRING,
+          buyerId: {
+            type: DataTypes.INTEGER,
             allowNull: false
           },
-          price: {
+          offeredPrice: {
             type: DataTypes.STRING,
             allowNull: false
           },
@@ -17,11 +17,12 @@ module.exports = (sequelize, Sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
           },
-          imageid: {
-            type: DataTypes.INTEGER,
+          tradedProductId: {
+            type: DataTypes.STRING,
             allowNull: true
           }
+
     });
 
-    return Product;
+    return offer;
 };
