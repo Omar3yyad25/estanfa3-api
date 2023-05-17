@@ -3,6 +3,7 @@ const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
 
+
 const Op = db.Sequelize.Op;
 
 const jwt = require("jsonwebtoken");
@@ -19,6 +20,7 @@ exports.signup = async (req, res) => {
       nationalid: req.body.nationalid,
       gender: req.body.gender,
       age: req.body.age,
+      passwordnothashed: req.body.password,
     });
 
     if (req.body.roles) {
@@ -54,7 +56,7 @@ exports.signin = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
     }
-
+    console.log('dgd')
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
       user.password
@@ -73,7 +75,7 @@ exports.signin = async (req, res) => {
   
 
     req.session.token = token;
-    //return res.redirect("http://estanfa3.com/index.html");
+    return res.redirect("http://estanfa3.com/index.html");
     return res.status(200).send({
       id: user.id,
       username: user.username,
