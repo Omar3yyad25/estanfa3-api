@@ -1,5 +1,4 @@
 const jwt_decode = require ('jwt-decode');
-const { serve } = require('swagger-ui-express');
 
 function jwtdecode(session){
     try{

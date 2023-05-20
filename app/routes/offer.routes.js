@@ -1,4 +1,5 @@
 const offerController = require('../controllers/offer.controller');
+const authchecker = require("../utils/authchecker")
 
 module.exports = function(app){
     app.use(function(req, res, next) {
@@ -10,5 +11,5 @@ module.exports = function(app){
       });    
 
 // Create a new product
-app.post("/createoffer/", offerController.create);
+app.post("/createoffer/",  authchecker.basic,offerController.create);
 };

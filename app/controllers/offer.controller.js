@@ -6,11 +6,17 @@ const url = require('url');
 
 // Create a new product
 exports.create = async (req, res) => {
-  console.log('kk')
   const { offeredPrice, description } = req.body;
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
-  
+  const queries = req.query
+
+  const productId = queries?.id
+
+  if (!productId){
+    return res.redirect("http://estanfa3.com")
+  }
+
   // console.log(req.url)
 
   // const parsedUrl = url.parse(req.url, true);
@@ -19,12 +25,10 @@ exports.create = async (req, res) => {
   // const id = parsedUrl.query.id;
   // console.log(parsedUrl.query);
 
-  const currentUrl = 'http://estanfa3.com/make-offer.html?id=1';
-  console.log(currentUrl)
 
  
   try {
-    const product = await db.Product.findByPk(id);
+    const product = await db.Product.findByPk(productId);
     const sellerId = product.sellerId;
 
     const offer = await db.offer.create({
@@ -32,7 +36,7 @@ exports.create = async (req, res) => {
       offeredPrice,
       description,
       buyerId: buyerId,
-      tradedProductId: id,
+      tradedProductId: productId,
     });
     
     //return res.redirect("http://estanfa3.com/product-uploaded.html");

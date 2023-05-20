@@ -6,10 +6,9 @@ const decode = require('../utils/jwtdecode')
 exports.create = async (req, res) => {
   const { name, price, description } = req.body;
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
-  const sellerId = decode.jwtdecode(session);
-  
   const files = req.files
-
+  console.log (req.sellerId)
+  const sellerId = req.sellerId
   try {
     const uploadedfile = files.image[0]
 
@@ -38,6 +37,9 @@ exports.create = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
   }
+    
+    
+  
 };
 
 // Retrieve all products
