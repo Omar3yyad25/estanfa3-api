@@ -17,16 +17,6 @@ exports.create = async (req, res) => {
     return res.redirect("http://estanfa3.com")
   }
 
-  // console.log(req.url)
-
-  // const parsedUrl = url.parse(req.url, true);
-
-  // // Extract the id parameter
-  // const id = parsedUrl.query.id;
-  // console.log(parsedUrl.query);
-
-
- 
   try {
     const product = await db.Product.findByPk(productId);
     const sellerId = product.sellerId;
@@ -39,8 +29,44 @@ exports.create = async (req, res) => {
       tradedProductId: productId,
     });
     
-    //return res.redirect("http://estanfa3.com/product-uploaded.html");
+    return res.redirect("http://estanfa3.com/offer-sent.html");
     res.status(201).json(offer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+exports.getOffersById = async (req, res) => {
+  const session = req.cookies['bezkoder-session']  // get sellerId from cookies
+  const id = decode.jwtdecode(session);
+  try {
+    const offers = await db.offer.findAll({
+      where: {
+        sellerId: id ,
+      },
+    });
+
+    if (!offers) {
+      return res.status(404).json({ message: 'Offers not found' });
+    }
+    res.json(offers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+exports.deleteofferbyId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const offer = await db.offer.findByPk(id);
+    if (!offer) {
+      return res.status(404).json({ message: 'Offer not found' });
+    }
+    await offer.destroy();
+    res.json({ message: 'Offer deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

@@ -12,4 +12,9 @@ module.exports = function(app){
 
 // Create a new product
 app.post("/createoffer/",  authchecker.basic,offerController.create);
+
+app.get("/getoffers/", authchecker.basic, offerController.getOffersById);
+
+app.post("/deleteoffer/:id", offerController.deleteofferbyId);
+
 };

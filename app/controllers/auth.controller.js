@@ -1,4 +1,5 @@
 const db = require("../models");
+const decode = require('../utils/jwtdecode')
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
@@ -85,6 +86,26 @@ exports.signin = async (req, res) => {
     return res.status(500).send({ message: error.message });
   }
 };
+
+
+exports.getusername = async (req, res) => {
+  const session = req.cookies['bezkoder-session']  // get sellerId from cookies
+  const id = decode.jwtdecode(session);
+  try{
+    const username = await User.findOne({
+      where: {
+        id: id,
+      }})
+      return res.json(username)
+
+  }
+  catch(err){
+    return res.status(500).send({ message: err.message }); 
+  }
+  
+  };
+
+
 
 exports.signout = async (req, res) => {
   try {
