@@ -92,7 +92,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-app.post('/webhook', (req, res) => {
+app.post('/git_pull', (req, res) => {
   res.send(200);
     exec('git pull origin master', (error, stdout, stderr) => {
     if (error) {
