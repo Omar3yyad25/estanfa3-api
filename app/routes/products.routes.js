@@ -28,7 +28,7 @@ app.get("/getuserproduct/", authchecker.basic, productController.getByUserId);
 app.put("/updateproduct/:id", productController.updateById);
 
 // Delete a product by ID
-app.post("/deleteproduct/:id", productController.deleteById);
+app.get("/deleteproduct/:id", productController.deleteById);
 
 
 };
