@@ -50,18 +50,18 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //   `);
 // });
 
-//app.use(cors());
+app.use(cors());
 
 // allow cross origin
-app.use(function(req, res, next) {
-  const origin = req.headers.origin
- if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/","http://127.0.0.1:3000"].indexOf(origin) > -1){
-   res.header('Access-Control-Allow-Origin', "*");
-   console.log("allowed origin: " + origin)
- }
- res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
- next();
-});
+// app.use(function(req, res, next) {
+//   const origin = req.headers.origin
+//  if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/","http://127.0.0.1:3000"].indexOf(origin) > -1){
+//    res.header('Access-Control-Allow-Origin', "*");
+//    console.log("allowed origin: " + origin)
+//  }
+//  res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//  next();
+// });
 
 // parse requests of content-type - application/json
 app.use(express.json());
