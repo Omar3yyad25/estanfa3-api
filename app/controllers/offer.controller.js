@@ -6,6 +6,7 @@ const url = require('url');
 
 // Create a new product
 exports.create = async (req, res) => {
+
   const { offeredPrice, description } = req.body;
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
@@ -33,8 +34,8 @@ exports.create = async (req, res) => {
       tradedProductId: productId,
     });
     
-    //return res.redirect("http://estanfa3.com/offer-sent.html");
-    return res.status(201).json(offer);
+    return res.redirect("http://estanfa3.com/offer-sent.html");
+    //return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
@@ -76,3 +77,5 @@ exports.deleteofferbyId = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
