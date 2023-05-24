@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
   console.log(req.query)
   console.log(queries)
 
-  const productId = queries?.id
+  const productId = req.body.productId;
 
   if (!productId){
     console.log("no product id", productId)
