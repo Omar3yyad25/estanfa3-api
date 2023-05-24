@@ -71,17 +71,13 @@ exports.signin = async (req, res) => {
 
     const token = jwt.sign({ id: user.id }, config.secret, {
       expiresIn: 86400, // 24 hours
-    });
+    });\
+    console.log(token)
 
   
 
     req.session.token = token;
     return res.redirect("http://estanfa3.com/index.html");
-    return res.status(200).send({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-    });
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
