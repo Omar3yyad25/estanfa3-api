@@ -99,15 +99,15 @@ app.post('/git_push', (req, res) => {
       return res.send(500);
     }})	
     // Execute the restart command for PM2
+    res.send(200);
     exec('pm2 restart index', (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing PM2 restart: ${error}`);
         return res.send(501)    
       } else {
-        console.log(`PM2 restart executed successfully: ${stdout}`);
-        return res.send(502)    
+        console.log(`PM2 restart executed successfully: ${stdout}`);   
+        return res.send(200);
       }
-      return res.send(200);
   });
 });
 
