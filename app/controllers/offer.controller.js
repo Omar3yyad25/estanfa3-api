@@ -29,7 +29,7 @@ exports.create = async (req, res) => {
       tradedProductId: productId,
     });
     
-    return res.redirect("http://estanfa3.com/offer-sent.html");
+    //return res.redirect("http://estanfa3.com/offer-sent.html");
     res.status(201).json(offer);
   } catch (error) {
     console.error(error);
