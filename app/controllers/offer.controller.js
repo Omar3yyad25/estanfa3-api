@@ -10,10 +10,12 @@ exports.create = async (req, res) => {
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
   const queries = req.query
+  console.log(queries)
 
   const productId = queries?.id
 
   if (!productId){
+    console.log("no product id", productId)
     return res.redirect("http://estanfa3.com")
   }
 
@@ -30,7 +32,7 @@ exports.create = async (req, res) => {
     });
     
     //return res.redirect("http://estanfa3.com/offer-sent.html");
-    res.status(201).json(offer);
+    return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
