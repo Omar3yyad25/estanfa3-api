@@ -50,9 +50,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //   `);
 // });
 
-app.use(cors());
+ app.use(cors());
 
-//allow cross origin
+// allow cross origin
 app.use(function(req, res, next) {
   const origin = req.headers.origin
  if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/"].indexOf(origin) > -1){
