@@ -96,6 +96,7 @@ exports.getusername = async (req, res) => {
       where: {
         id: id,
       }})
+      console.log(username)
       return res.json(username)
 
   }
