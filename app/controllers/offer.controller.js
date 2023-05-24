@@ -34,8 +34,8 @@ exports.create = async (req, res) => {
       tradedProductId: productId,
     });
     
-    return res.redirect("http://estanfa3.com/offer-sent.html");
-    //return res.status(201).json(offer);
+    //return res.redirect("http://estanfa3.com/offer-sent.html");
+    return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
