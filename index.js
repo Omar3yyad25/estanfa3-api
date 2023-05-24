@@ -50,7 +50,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //   `);
 // });
 
-//app.use(cors());
+app.use(cors());
 
 // allow cross origin
 //app.use(function(req, res, next) {
