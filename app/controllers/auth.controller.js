@@ -77,11 +77,11 @@ exports.signin = async (req, res) => {
   
     req.session.token = token;
     console.log(req.session.token,"token from line 79")
-    //return res.redirect("http://estanfa3.com/index.html");
-    return res.status(200).send({
-      message: "You've been signed in!",
-    }
-      );
+    return res.redirect("http://estanfa3.com/index.html");
+    // return res.status(200).send({
+    //   message: "You've been signed in!",
+    // }
+    //   );
   } catch (error) {
     return res.status(500).send({ message: error.message });
   }
