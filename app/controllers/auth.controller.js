@@ -76,6 +76,7 @@ exports.signin = async (req, res) => {
 
   
     req.session.token = token;
+    console.log(req.session.token,"token from line 79")
     return res.redirect("http://estanfa3.com/index.html");
   } catch (error) {
     return res.status(500).send({ message: error.message });
