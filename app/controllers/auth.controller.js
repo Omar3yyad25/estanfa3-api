@@ -99,7 +99,7 @@ exports.getusername = async (req, res) => {
         id: id,
       }})
       console.log(username,"username")
-      return res.json(username)
+      return res.json(username.username)
   }
   catch(err){
     return res.status(500).send({ message: err.message }); 
