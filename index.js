@@ -5,13 +5,13 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const multer  = require('multer');
 const path = require('path');
-
+const { exec } = require('child_process');
 const cookieParser = require("cookie-parser");
 
 
 const app = express();
 
-
+app.use(cors());
 app.use(cookieParser());
 
 const options = {
@@ -53,15 +53,14 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 //app.use(cors());
 
 // allow cross origin
-app.use(function(req, res, next) {
-  const origin = req.headers.origin
-  if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/"].indexOf(origin) > -1){
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', true)
-  }
-  res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-  next();
-});
+//app.use(function(req, res, next) {
+  //const origin = req.headers.origin
+ // if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/"].indexOf(origin) > -1){
+ //   res.header('Access-Control-Allow-Origin', "*");
+//  }
+//  res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+//  next();
+//});
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -91,6 +90,25 @@ db.sequelize.sync();
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
+});
+
+app.post('/webhook', (req, res) => {
+  res.send(200);
+    exec('git pull origin master', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing 'git pull': ${error}`);
+      return res.send(500);
+    }})	
+  // Execute the restart command for PM2
+  exec('pm2 restart index', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing PM2 restart: ${error}`);
+return res.send(501)    
+} else {
+      console.log(`PM2 restart executed successfully: ${stdout}`);
+	return res.send(502)    
+}
+  });
 });
 
 app.use(express.static('public'));
