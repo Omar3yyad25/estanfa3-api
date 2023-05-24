@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());
 app.use(cookieParser());
 
 const options = {
@@ -52,15 +52,15 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(cors());
 
-// allow cross origin
-//app.use(function(req, res, next) {
-  //const origin = req.headers.origin
- // if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/"].indexOf(origin) > -1){
- //   res.header('Access-Control-Allow-Origin', "*");
-//  }
-//  res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-//  next();
-//});
+//allow cross origin
+app.use(function(req, res, next) {
+  const origin = req.headers.origin
+ if(["http://estanfa3.com:8443/", "https://estanfa3.com", "https://estanfa3.com/", "http://estanfa3.com","http://estanfa3.com/"].indexOf(origin) > -1){
+   res.header('Access-Control-Allow-Origin', "*");
+ }
+ res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+ next();
+});
 
 // parse requests of content-type - application/json
 app.use(express.json());
