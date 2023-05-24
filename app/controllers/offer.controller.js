@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
   const { offeredPrice, description } = req.body;
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
-  const queries = req.query
+  const queries = req.params
   console.log(queries)
 
   const productId = queries?.id
