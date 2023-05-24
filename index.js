@@ -92,22 +92,22 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to bezkoder application." });
 });
 
-app.post('/git_pull', (req, res) => {
-  res.send(200);
-    exec('git pull origin master', (error, stdout, stderr) => {
+app.post('/git_push', (req, res) => {
+  exec('git pull origin master', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing 'git pull': ${error}`);
       return res.send(500);
     }})	
-  // Execute the restart command for PM2
-  exec('pm2 restart index', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing PM2 restart: ${error}`);
-return res.send(501)    
-} else {
-      console.log(`PM2 restart executed successfully: ${stdout}`);
-	return res.send(502)    
-}
+    // Execute the restart command for PM2
+    exec('pm2 restart index', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing PM2 restart: ${error}`);
+        return res.send(501)    
+      } else {
+        console.log(`PM2 restart executed successfully: ${stdout}`);
+        return res.send(502)    
+      }
+      return res.send(200);
   });
 });
 
