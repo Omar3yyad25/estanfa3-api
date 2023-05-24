@@ -2,7 +2,7 @@ const decode = require('./jwtdecode')
 
 function basic(req, res, next) {
     const session = req.cookies['bezkoder-session']  // get sellerId from cookies
-    console.log(session)
+    console.log(req.cookies)
     if (!session){
         console.log("no session")
         return res.redirect("http://estanfa3.com/login.html")
