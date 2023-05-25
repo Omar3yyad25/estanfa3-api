@@ -98,7 +98,7 @@ exports.getusername = async (req, res) => {
       where: {
         id: id,
       }})
-      console.log(username,"username")
+      console.log(username._previousDataValues,"username")
       return res.json(username.username)
   }
   catch(err){
