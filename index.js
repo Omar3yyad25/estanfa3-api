@@ -86,6 +86,16 @@ app.post('/git_push', (req, res) => {
     return res.send(200,"ss");
    
 });
+app.post('/git_push_front', (req, res) => {
+  exec('cd /var/www//html/ ; git pull', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing 'git pull': ${error}`);
+      return res.send(500);
+    }})	
+    // Execute the restart command for PM2
+    return res.send(200,"ss");
+   
+});
 
 app.use(express.static('public'));
 app.use('/uploads', express.static('uploads'));
