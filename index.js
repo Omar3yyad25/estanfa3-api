@@ -32,23 +32,6 @@ const swaggerSpec = swaggerJSDoc(options);
 // Serve the Swagger UI page
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// const upload = multer({ dest: 'uploads/' });
-// app.use(express.static(path.join(__dirname, 'public')));
-
-// app.post('/upload', upload.single('image'), (req, res) => {
-//   const file = req.file;
-//   if (!file) {
-//     const error = new Error('Please upload a file');
-//     console.log('upload');
-//     error.httpStatusCode = 400;
-//     return next(error);
-//   }
-  
-//   res.send(`
-//     <h1>File uploaded successfully!</h1>
-//     <img src="${file.filename}">
-//   `);
-// });
 
 
 // allow cross origin
