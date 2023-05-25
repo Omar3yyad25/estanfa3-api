@@ -91,15 +91,14 @@ exports.signin = async (req, res) => {
 exports.getusername = async (req, res) => {
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const id = decode.jwtdecode(session);
-  console.log(req.session.token,"session")
-  console.log(id,"id")
+
   try{
     const username = await User.findOne({
       where: {
         id: id,
       }})
-      console.log(username._previousDataValues,"username")
-      return res.json(username.username)
+      console.log("USER:    ", username)
+      return res.json(username)
   }
   catch(err){
     return res.status(500).send({ message: err.message }); 
