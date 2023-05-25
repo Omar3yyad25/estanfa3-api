@@ -99,7 +99,7 @@ exports.getusername = async (req, res) => {
     }})
     const username = user.dataValues.username
     console.log("USERSESERSRES:    ", user.dataValues)
-    return res.json({username: username})
+    return res.json({username: "5555555"})
   }
   catch(err){
     return res.status(500).send({ message: err.message }); 
