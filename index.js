@@ -100,8 +100,6 @@ app.post('/git_push', (req, res) => {
       return res.send(500);
     }})	
     // Execute the restart command for PM2
-    console.log(`git pull executed successfully: ${stdout}`);
-    console.log(`git pull executed successfully: ${stderr}`);
     return res.send(200,"ss");
    
 });
