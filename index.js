@@ -94,7 +94,7 @@ app.get("/", (req, res) => {
 });
 
 app.post('/git_push', (req, res) => {
-  exec('git pull origin master', (error, stdout, stderr) => {
+  exec('git pull', (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing 'git pull': ${error}`);
       return res.send(500);
