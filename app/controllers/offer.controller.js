@@ -71,7 +71,8 @@ exports.deleteofferbyId = async (req, res) => {
       return res.status(404).json({ message: 'Offer not found' });
     }
     await offer.destroy();
-    res.json({ message: 'Offer deleted successfully' });
+    return res.redirect("http://estanfa3.com/vendor-dashboard.html");
+    //res.json({ message: 'Offer deleted successfully' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
