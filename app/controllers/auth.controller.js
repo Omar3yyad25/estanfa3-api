@@ -64,9 +64,10 @@ exports.signin = async (req, res) => {
     );
 
     if (!passwordIsValid) {
-      return res.status(401).send({
-        message: "Invalid Password!",
-      });
+      return res.redirect("http://estanfa3.com/login.html");
+      // return res.status(401).send({
+      //   message: "Invalid Password!",
+      // });
     }
 
     const token = jwt.sign({ id: user.id }, config.secret, {
