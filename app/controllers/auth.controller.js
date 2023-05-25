@@ -93,12 +93,12 @@ exports.getusername = async (req, res) => {
   const id = decode.jwtdecode(session);
 
   try{
-    const username = await User.findOne({
+    const user = await User.findOne({
       where: {
         id: id,
-      }})
-      console.log("USER:    ", username)
-      return res.json(username)
+    }})
+    const username = user.dataValues.username
+    return res.json({username: username})
   }
   catch(err){
     return res.status(500).send({ message: err.message }); 
