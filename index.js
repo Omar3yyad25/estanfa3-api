@@ -101,6 +101,8 @@ app.post('/git_push', (req, res) => {
     }})	
     // Execute the restart command for PM2
     res.send(200,"ss");
+    console.log(`git pull executed successfully: ${stdout}`);
+    console.log(`git pull executed successfully: ${stderr}`);
     exec('pm2 restart index', (error, stdout, stderr) => {
       if (error) {
         console.error(`Error executing PM2 restart: ${error}`);
