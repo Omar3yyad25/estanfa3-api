@@ -98,6 +98,7 @@ exports.getusername = async (req, res) => {
         id: id,
     }})
     const username = user.dataValues.username
+    console.log("USERSESERSRES:    ", user.dataValues)
     return res.json({username: username})
   }
   catch(err){
