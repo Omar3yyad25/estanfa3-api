@@ -52,10 +52,10 @@ exports.getContractsById = async (req, res) => {
         },
       });
   
-      if (!offers) {
-        return res.status(404).json({ message: 'Offers not found' });
+      if (!contract) {
+        return res.status(404).json({ message: 'contracts not found' });
       }
-      res.json(offers);
+      res.json(contract);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Server error' });
