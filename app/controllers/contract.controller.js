@@ -6,7 +6,7 @@ const url = require('url');
 // Create a new contract
 exports.create = async (req, res) => {
 
-  const { productId } = req.params.id;
+  const { productId } = req.params;
   console.log(productId)
 
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
