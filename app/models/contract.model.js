@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 module.exports = (sequelize, Sequelize) => {
-    const offer =  sequelize.define("contract",{
+    const contract =  sequelize.define("contract",{
           sellerId:{
             type: DataTypes.INTEGER,
             allowNull: false
@@ -19,12 +19,8 @@ module.exports = (sequelize, Sequelize) => {
           },
           tradedProductId: {
             type: DataTypes.STRING,
-            allowNull: true
-          },
-          status: {
-            type: DataTypes.STRING,
-            allowNull: true
-          } 
+            allowNull: false
+          }
 
     });
 
