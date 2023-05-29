@@ -5,12 +5,14 @@ const url = require('url');
 
 // Create a new contract
 exports.create = async (req, res) => {
+
   const { productId } = req.params;
   console.log(productId)
 
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
   const queries = req.params
+  console.log(queries)
 
   if (!productId){
     console.log("no product id", productId)
