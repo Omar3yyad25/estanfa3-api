@@ -25,7 +25,7 @@ exports.create = async (req, res) => {
   try {
     const product = await db.Product.findByPk(productId);
     const sellerId = product.sellerId;
-    
+
     const offer = await db.offer.create({
       sellerId: sellerId,
       offeredPrice,
@@ -64,7 +64,7 @@ exports.getOffersById = async (req, res) => {
 
 exports.deleteofferbyId = async (req, res) => {
   const { id } = req.params;
-
+  console.log(id)
   try {
     const offer = await db.offer.findByPk(id);
     if (!offer) {

@@ -70,14 +70,10 @@ exports.getContractsById = async (req, res) => {
   
 
   exports.deletecontractbyId = async (req, res) => {
-    const { productId } = req.params;
+    const { id } = req.params;
   
     try {
-      const contract = await db.contract.findOne({
-        where: {
-            tradedProductId: productId,
-        },
-      });
+      const contract = await db.contract.findByPk(id);
       if (!contract) {
         return res.status(404).json({ message: 'contract not found' });
       }
