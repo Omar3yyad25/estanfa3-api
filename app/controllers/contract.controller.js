@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
       diffPrice: offer.offeredPrice - product.price, 
     });
     
-    return res.redirect("http://estanfa3.com:8443/deleteoffer/"+productId);
+    return res.redirect("http://estanfa3.com:8443/deleteoffer/"+offer.id);
     //return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
