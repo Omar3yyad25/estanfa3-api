@@ -25,9 +25,9 @@ exports.create = async (req, res) => {
     console.log(sellerId, "sellerId")
     const offer = await db.offer.findOne({
         where: {
-            productId: productId,
+            tradedProductId: productId,
         },
-    })
+    });
 
     console.log(offer, "offer")
 
