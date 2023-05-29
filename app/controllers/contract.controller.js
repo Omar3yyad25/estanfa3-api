@@ -22,11 +22,14 @@ exports.create = async (req, res) => {
   try {
     const product = await db.Product.findByPk(productId);
     const sellerId = product.sellerId;
+    console.log(sellerId, "sellerId")
     const offer = await db.offer.findOne({
         where: {
             productId: productId,
         },
     })
+
+    console.log(offer, "offer")
 
 
     const contract = await db.contract.create({
