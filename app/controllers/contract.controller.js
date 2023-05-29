@@ -71,6 +71,7 @@ exports.getContractsById = async (req, res) => {
   exports.getSentContractsById = async (req, res) => {
     const session = req.cookies['bezkoder-session']  // get sellerId from cookies
     const id = decode.jwtdecode(session);
+    console.log(id)
     try {
       const contract = await db.contract.findAll({
         where: {
