@@ -11,5 +11,5 @@ module.exports = function(app){
       });    
 
 // Create a new product
-app.post("/createcontract/",  authchecker.basic,contractController.create);
+app.post("/createcontract/:id",  authchecker.basic,contractController.create);
 };

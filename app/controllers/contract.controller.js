@@ -5,16 +5,15 @@ const url = require('url');
 
 // Create a new contract
 exports.create = async (req, res) => {
+  const { productId } = req.params;
 
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
   const queries = req.params
 
-  const productId = req.body.productId;
-
   if (!productId){
     console.log("no product id", productId)
-    return res.redirect("http://estanfa3.com")
+    return res.redirect("http://estanfa3.com/404-error-page-2.html")
   }
 
   try {
@@ -35,7 +34,7 @@ exports.create = async (req, res) => {
       diffPrice: offer.offeredPrice - product.price, 
     });
     
-    return res.redirect("http://estanfa3.com/offer-sent.html");
+    return res.redirect("http://estanfa3.com/contract-accepted.html");
     //return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
