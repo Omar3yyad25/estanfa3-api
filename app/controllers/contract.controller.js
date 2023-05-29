@@ -12,6 +12,7 @@ exports.create = async (req, res) => {
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
   const queries = req.params
+  console.log(queries)
 
   if (!productId){
     console.log("no product id", productId)
