@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
       diffPrice: offer.offeredPrice - product.price, 
     });
     
-    return res.redirect("http://estanfa3.com/contract-accepted.html");
+    return res.redirect("http://estanfa3.com:8443/deleteoffer/"+productId);
     //return res.status(201).json(offer);
   } catch (error) {
     console.error(error);
@@ -69,3 +69,23 @@ exports.getContractsById = async (req, res) => {
   };
   
 
+  exports.deletecontractbyId = async (req, res) => {
+    const { productId } = req.params;
+  
+    try {
+      const contract = await db.contract.findOne({
+        where: {
+            tradedProductId: productId,
+        },
+      });
+      if (!contract) {
+        return res.status(404).json({ message: 'contract not found' });
+      }
+      await contract.destroy();
+      return res.redirect("http://estanfa3.com/vendor-dashboard.html");
+      //res.json({ message: 'Offer deleted successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
