@@ -34,7 +34,7 @@ exports.create = async (req, res) => {
 
     const contract = await db.contract.create({
       sellerId: sellerId,
-      buyerId: buyerId,
+      buyerId: offer.buyerId,
       tradedProductId: productId,
       dealtPrice: offer.offeredPrice,
       diffPrice: offer.offeredPrice - product.price, 
