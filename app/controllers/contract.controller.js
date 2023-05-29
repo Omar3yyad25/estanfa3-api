@@ -6,6 +6,7 @@ const url = require('url');
 // Create a new contract
 exports.create = async (req, res) => {
   const { productId } = req.params;
+  console.log(productId)
 
   const session = req.cookies['bezkoder-session']  // get sellerId from cookies
   const buyerId = decode.jwtdecode(session);
@@ -13,7 +14,7 @@ exports.create = async (req, res) => {
 
   if (!productId){
     console.log("no product id", productId)
-    return res.redirect("http://estanfa3.com/404-error-page-2.html")
+    //return res.redirect("http://estanfa3.com/404-error-page-2.html")
   }
 
   try {
