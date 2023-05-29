@@ -15,6 +15,8 @@ app.get("/createcontract/:productId",  authchecker.basic,contractController.crea
 
 app.get("/getcontracts/", authchecker.basic, contractController.getContractsById);
 
+app.get("/getsentcontracts/", authchecker.basic, contractController.getSentContractsById);
+
 app.get("/deletecontract/:id", authchecker.basic, contractController.deletecontractbyId);
 
 };
