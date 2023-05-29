@@ -41,3 +41,25 @@ exports.create = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+exports.getContractsById = async (req, res) => {
+    const session = req.cookies['bezkoder-session']  // get sellerId from cookies
+    const id = decode.jwtdecode(session);
+    try {
+      const contract = await db.contract.findAll({
+        where: {
+          sellerId: id ,
+        },
+      });
+  
+      if (!offers) {
+        return res.status(404).json({ message: 'Offers not found' });
+      }
+      res.json(offers);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+
