@@ -5,7 +5,7 @@ const {randomUUID} =  require("crypto")
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, `/root/estanfa3-api/uploads/`)
+    cb(null, `uploads/`)
   },
   filename: (req, file, cb) => {
     // generate a unique filename using uuid
